@@ -84,6 +84,7 @@ body {
     font-weight: 800;
     font-size: 1.3rem;
     text-decoration: none;
+    color: var(--text-white);
 }
 
 .nav-links {
@@ -106,6 +107,7 @@ body {
     color: var(--text-white);
 }
 
+/* النقطة المتحركة تحت الناف بار */
 .nav-dot {
     position: absolute;
     width: 6px;
@@ -116,6 +118,41 @@ body {
     bottom: -6px;
     transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
     opacity: 0;
+}
+
+/* Hamburger Toggle Button */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+    background-color: var(--accent-green);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+    background-color: var(--accent-green);
 }
 
 .btn-primary {
@@ -146,6 +183,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
     position: relative;
 }
@@ -208,8 +246,11 @@ body {
 
 .hero-image-wrapper {
     position: relative;
-    margin-top: 3rem;
+    margin: 3rem auto 0;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-card {
@@ -246,18 +287,9 @@ body {
 }
 
 @keyframes cardToss {
-    0% {
-        opacity: 0;
-        transform: translateY(200px) rotate(-25deg) scale(0.5);
-    }
-    60% {
-        opacity: 1;
-        transform: translateY(-15px) rotate(3deg) scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) rotate(0deg) scale(1);
-    }
+    0% { opacity: 0; transform: translateY(200px) rotate(-25deg) scale(0.5); }
+    60% { opacity: 1; transform: translateY(-15px) rotate(3deg) scale(1.05); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
 }
 
 @keyframes backdropSlide {
@@ -265,7 +297,7 @@ body {
     100% { opacity: 0.85; transform: translate(0, 0) rotate(-6deg); }
 }
 
-/* Explore Badge (تعديل الألوان لتوائم الثيم) */
+/* Explore Badge */
 .explore-badge {
     position: absolute;
     bottom: 12px;
@@ -305,7 +337,7 @@ body {
     transform: translateY(2px);
 }
 
-/* Services Section */
+/* Services, Skills, Projects, Contact */
 .services, .skills, .projects, .contact {
     padding: 6rem 10%;
     position: relative;
@@ -359,9 +391,7 @@ body {
     display: block;
 }
 
-.accordion-item .arrow {
-    transition: transform 0.3s ease;
-}
+.accordion-item .arrow { transition: transform 0.3s ease; }
 
 .accordion-item.active .arrow {
     transform: rotate(180deg);
@@ -463,9 +493,7 @@ body {
     transition: transform 0.5s ease;
 }
 
-.project-card:hover .project-image img {
-    transform: scale(1.06);
-}
+.project-card:hover .project-image img { transform: scale(1.06); }
 
 .project-overlay {
     position: absolute;
@@ -488,13 +516,9 @@ body {
     gap: 0.4rem;
 }
 
-.project-card:hover .project-overlay {
-    opacity: 1;
-}
+.project-card:hover .project-overlay { opacity: 1; }
 
-.project-info {
-    padding: 1.5rem;
-}
+.project-info { padding: 1.5rem; }
 
 .project-tags {
     display: flex;
@@ -553,9 +577,7 @@ body {
     outline: none;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
-    border-color: var(--accent-green);
-}
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent-green); }
 
 .full-width { width: 100%; }
 
@@ -570,9 +592,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.info-card.active-card {
-    border-color: var(--accent-green);
-}
+.info-card.active-card { border-color: var(--accent-green); }
 
 .info-card.active-card .arrow-link {
     background: var(--accent-green);
@@ -581,7 +601,7 @@ body {
     border-radius: 50%;
 }
 
-/* Advanced Footer */
+/* Footer */
 .footer {
     border-top: 1px solid var(--border-color);
     background: linear-gradient(180deg, var(--bg-dark) 0%, #060806 100%);
@@ -609,13 +629,8 @@ body {
     font-size: 1.1rem;
 }
 
-.footer ul {
-    list-style: none;
-}
-
-.footer ul li {
-    margin-bottom: 0.6rem;
-}
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 0.6rem; }
 
 .footer ul li a {
     color: var(--text-muted);
@@ -629,10 +644,7 @@ body {
     padding-left: 4px;
 }
 
-.social-icons {
-    display: flex;
-    gap: 0.8rem;
-}
+.social-icons { display: flex; gap: 0.8rem; }
 
 .social-icons a {
     width: 40px;
@@ -666,7 +678,24 @@ body {
     font-size: 0.85rem;
 }
 
-/* Media Queries */
+/* Overlay للخلفية عند فتح القائمة الجانبية */
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Media Queries للهواتف والشاشات المختلفة */
 @media (min-width: 1400px) {
     .services, .skills, .projects, .contact, .footer {
         padding-left: 15%;
@@ -675,91 +704,113 @@ body {
 }
 
 @media (max-width: 1200px) {
-    .hero-title {
-        font-size: 3.2rem;
-    }
-    .footer-top {
-        grid-template-columns: 1.5fr 1fr 1fr 1fr;
-        gap: 1.5rem;
-    }
+    .hero-title { font-size: 3.2rem; }
+    .footer-top { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 1.5rem; }
 }
 
 @media (max-width: 992px) {
-    .navbar {
-        padding: 1.2rem 4%;
-    }
-    .hero {
-        padding-top: 7rem;
-    }
-    .hero-title {
-        font-size: 2.8rem;
-    }
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
-    .footer-top {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
+    .navbar { padding: 1.2rem 5%; }
+    .hero-title { font-size: 2.8rem; }
+    .contact-container { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
 }
 
 @media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+
+    /* إخفاء زر التواصل الرئيسي على الشاشات الصغيرة لوضعه داخل القائمة المنسدلة برمجياً */
+    .navbar > .btn-primary { display: none; }
+
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--card-bg);
+        border-left: 1px solid var(--border-color);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 1001;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     }
+
+    .nav-links.active { right: 0; }
+
+    .nav-links a {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-dot { display: none !important; }
+
+    /* التمركز الدقيق للمحتوى على للهواتف */
+    .hero {
+        padding-top: 8rem;
+        padding-bottom: 3rem;
+        text-align: center;
+    }
+
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.3rem;
+        word-break: break-word;
     }
+
     .hero-sub {
         font-size: 0.95rem;
+        margin: 0 auto;
     }
+
+    .hero-image-wrapper {
+        margin: 3rem auto 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .hero-card, .stacked-card-backdrop {
-        width: 230px;
-        height: 300px;
+        width: 250px;
+        height: 320px;
     }
-    .section-title {
-        font-size: 2.1rem;
-    }
-    .services, .skills, .projects, .contact {
-        padding: 4rem 5%;
-    }
-    .accordion-item {
-        padding: 1.2rem 1rem;
-    }
-    .title-wrap {
-        font-size: 1rem;
-    }
-    .title-wrap i {
-        font-size: 1.2rem;
-    }
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    .footer-top {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+
+    .section-title { font-size: 2.1rem; text-align: center; }
+    .section-desc { text-align: center; }
+
+    .services, .skills, .projects, .contact { padding: 4rem 5%; }
+    .accordion-item { padding: 1.2rem 1rem; }
+    .accordion-item:hover, .accordion-item.active { transform: none; }
+    
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    
+    .footer-brand p { margin: 1rem auto; }
+    .social-icons { justify-content: center; }
 }
 
 @media (max-width: 480px) {
-    .navbar .btn-primary {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
+    .navbar { padding: 1rem 5%; }
+    .logo { font-size: 1.1rem; }
+    .hero-title { font-size: 1.9rem; }
+    .badge { font-size: 0.8rem; }
+    
+    .hero-card, .stacked-card-backdrop {
+        width: 220px;
+        height: 290px;
     }
-    .logo {
-        font-size: 1.1rem;
-    }
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    .badge {
-        font-size: 0.8rem;
-    }
+
     .skill-icons span {
         width: 100%;
         margin: 0.3rem 0;
+        justify-content: center;
     }
-    .contact-form input, .contact-form textarea {
-        padding: 1rem;
-    }
+
+    .contact-form input, .contact-form textarea { padding: 1rem; }
 }
