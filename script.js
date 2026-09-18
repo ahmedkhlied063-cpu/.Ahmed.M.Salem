@@ -204,26 +204,28 @@ function copyToClipboard(text, element) {
 }
 
 
-// 1. تهيئة المكتبة بالـ Public Key
 // EmailJS Integration
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize EmailJS
-    emailjs.init("YtGe_DwukEd341svt");
-
-    // 2. Target the form using 'contact-form' ID
+    // 1. تحديد النموذج بواسطة الـ ID الخاص به
     const contactForm = document.getElementById('contact-form');
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            emailjs.sendForm('service_c1tbnmf', 'template_b6n09wn', this)
-                .then(function() {
-                    alert('تم إرسال الرسالة بنجاح!');
-                    contactForm.reset(); // تفريغ الخانات بعد الإرسال
-                }, function(error) {
-                    alert('حدث خطأ أثناء الإرسال: ' + JSON.stringify(error));
-                });
+            // 2. إرسال البيانات وتمرير المفاتيح بالترتيب
+            emailjs.sendForm(
+                'service_c1tbnmf',    // 1. هنا يوضع الـ Service ID
+                'template_b6n09wn',   // 2. هنا يوضع الـ Template ID
+                this,                 // 3. عنصر النموذج الحاضر (Form Element)
+                'YtGe_DwukEd34lsvt'   // 4. هنا يوضع الـ Public Key بداخل علامتي التنصيص
+            )
+            .then(function() {
+                alert('تم إرسال الرسالة بنجاح!');
+                contactForm.reset(); // إعادة ضبط حقول الإدخال
+            }, function(error) {
+                alert('حدث خطأ أثناء الإرسال: ' + JSON.stringify(error));
+            });
         });
     }
 });
