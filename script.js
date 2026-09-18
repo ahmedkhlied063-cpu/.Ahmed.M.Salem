@@ -205,19 +205,27 @@ function copyToClipboard(text, element) {
 
 
 // 1. تهيئة المكتبة بالـ Public Key
-emailjs.init("YtGe_DwukEd34lsvt"); // استبدل هذا بـ Public Key من قسم Account
+// EmailJS Integration
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initialize EmailJS
+    emailjs.init("YtGe_DwukEd341svt");
 
-// 2. إرسال النموذج عند الضغط على Send Message
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    // 2. Target the form using 'contact-form' ID
+    const contactForm = document.getElementById('contact-form');
 
-    // استبدل SERVICE_ID بالـ Service ID الخاص بك (مثل service_c1tbnmf)
-    emailjs.sendForm('service_c1tbnmf', 'template_b6n09wn', this)
-        .then(function() {
-            alert('تم إرسال الرسالة بنجاح!');
-        }, function(error) {
-            alert('حدث خطأ أثناء الإرسال: ' + JSON.stringify(error));
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_c1tbnmf', 'template_b6n09wn', this)
+                .then(function() {
+                    alert('تم إرسال الرسالة بنجاح!');
+                    contactForm.reset(); // تفريغ الخانات بعد الإرسال
+                }, function(error) {
+                    alert('حدث خطأ أثناء الإرسال: ' + JSON.stringify(error));
+                });
         });
+    }
 });
 
 // Footer Functionality
