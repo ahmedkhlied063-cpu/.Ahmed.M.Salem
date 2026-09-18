@@ -204,6 +204,22 @@ function copyToClipboard(text, element) {
 }
 
 
+// 1. تهيئة المكتبة بالـ Public Key
+emailjs.init("YtGe_DwukEd34lsvt"); // استبدل هذا بـ Public Key من قسم Account
+
+// 2. إرسال النموذج عند الضغط على Send Message
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // استبدل SERVICE_ID بالـ Service ID الخاص بك (مثل service_c1tbnmf)
+    emailjs.sendForm('service_c1tbnmf', 'template_b6n09wn', this)
+        .then(function() {
+            alert('تم إرسال الرسالة بنجاح!');
+        }, function(error) {
+            alert('حدث خطأ أثناء الإرسال: ' + JSON.stringify(error));
+        });
+});
+
 // Footer Functionality
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Dynamic Copyright Year
